@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style>
+		table, th, td {
+			border: 1px solid black;
+			border-collapse:collapse;
+		}
+		th, td {
+			padding: 5px;
+		}
+	</style>
+	<title> Get Text From a Doc XML </title>
+	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+	<script>
+		$(document).ready(function(){
+/*			$.ajax({
+				type: "GET",
+				url: "cd_catalog.xml",
+				dataType: "xml",
+				success: function(xml) {
+					$(xml).find('CD').each(function(){
+						var title = $(this).find('TITLE').text();
+						var artist = $(this).find('ARTIST').text();
+						//$("#myTB").append("<tr> <td>"+artist+"</td> <td>"+title+"</td> </tr>");
+						var tr = $("<tr>");
+						$("td").append(artist).appendTo(tr);					
+						$("td").append(title).appendTo(tr);
+						tr.appendTo("#myTB");
+						//$("<tr>").appendTo("#myTB")
+						//.html(Titles + ", " + Manufacturers).appendTo("#Autom ul");
+					});
+				},
+				//other code
+				error: function() {
+					alert("The XML File could not be processed correctly.");
+				}
+			});
+*/
+		});
+	</script>
+</head>
+<body>
+	<table id="myTB">
+		<th>
+			<td>Artist</td>
+			<td>Title</td>
+		</th>
+	</table>
+	<script>
+		$.get('cd_catalog.xml',function(xml) {
+				$(xml).find('CD').each(function(){
+					var title = $(this).find('TITLE').text();
+					var artist = $(this).find('ARTIST').text();
+					//$("#myTB").append("<tr> <td>"+artist+"</td> <td>"+title+"</td> </tr>");
+					var tr = $("<tr>");
+					$("td").append(artist).appendTo(tr);					
+					$("td").append(title).appendTo(tr);
+					tr.appendTo("#myTB");
+					//$("<tr>").appendTo("#myTB")
+					//.html(Titles + ", " + Manufacturers).appendTo("#Autom ul");
+				});
+		});
+	</script>
+</body>
+</html>
